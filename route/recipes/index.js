@@ -10,16 +10,15 @@ module.exports = (knex) => {
   app.use(bodyParser.json()); // for parsing application/json
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  app.get('/', function (req, res) {
+  app.get('/', (req, res) => {
     res.sendFile('/view/recipes/index.html', {root: root});
   });
   
-  app.get('/list', (req, res, next) => {
-    knex.select()
+  app.get('/list', (req, res) => {
+    return knex.select()
     .from("recipes")
     .then((data) => {
-      res.send(data);
-      next();
+      res.json(data);
     })
     .catch((err) => {
       console.log(err);
@@ -27,11 +26,11 @@ module.exports = (knex) => {
     });
   });
 
-  app.get('/edit', function (req, res) {
+  app.get('/edit', (req, res) => {
     res.sendFile('/view/recipes/edit.html', {root: root});
   });
 
-  app.get('/delete', function (req, res) {
+  app.get('/delete', (req, res) => {
     res.sendFile('/view/recipes/delete.html', {root: root});
   });
   
@@ -88,7 +87,7 @@ module.exports = (knex) => {
     });
   });
 
-  app.post('/',  upload.array(), function (req, res, next) {
+  app.post('/', (req, res) => {
     knex("recipes")
     .insert({
       title: req.body.title,
