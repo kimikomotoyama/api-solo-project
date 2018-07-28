@@ -25,10 +25,6 @@ const root = '.'
   app.get('/', function (req, res) {
     res.sendFile('/view/recipes/index.html', {root: root});
   });
-
-  app.get('/edit', function (req, res) {
-    res.sendFile('/view/recipes/edit.html', {root: root});
-  });
   
   app.get('/list', (req, res) => {
     knex.select()
@@ -37,8 +33,17 @@ const root = '.'
       res.status(200).send(data);
     })
     .catch((err) => {
-      res.send("err");
+      console.log(err);
+      res.sendStatus(400);
     });
+  });
+
+  app.get('/edit', function (req, res) {
+    res.sendFile('/view/recipes/edit.html', {root: root});
+  });
+
+  app.get('/delete', function (req, res) {
+    res.sendFile('/view/recipes/delete.html', {root: root});
   });
   
   app.post('/edit', (req, res) => {
@@ -57,8 +62,24 @@ const root = '.'
       res.send(req.body);
     })
     .catch((err) => {
+      console.log(err);
       res.sendStatus(400);
     })
+  });
+
+  app.post('/delete', (req, res) => {
+    if (!req.body.id) throw new Error("id required!");
+
+    knex("recipes")
+    .where('id', req.body.id)
+    .del()
+    .then(() => {
+      res.send("deleted");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
   });
 
   app.post('/',  upload.array(), function (req, res, next) {
@@ -75,11 +96,6 @@ const root = '.'
       console.log(err);
       res.sendStatus(400);
     });
-  });
-
-  
-  app.delete('/:id', (req, res) => {
-    res.delete('delete ok');
   });
 
 module.exports = app;
