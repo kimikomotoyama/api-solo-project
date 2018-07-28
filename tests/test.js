@@ -7,8 +7,10 @@ const knex = require("../config.js");
 
 const base = 'http://localhost:3000';
 
-describe('movie service', () => {
+describe('recipes', () => {
 
+  //currently, this before does not work and must manually do knex seed:run
+  //each time you run npm test
   before = () => {
     return knex('recipes').del()
     .then(function () {
@@ -46,6 +48,55 @@ describe('movie service', () => {
         expect(data[9]["prepareTime"]).to.equal("35");
         done();
       });
+    });
+  });
+
+  describe('POST /recipes', () => {
+    it("should post a recipe", () => {
+      request.post({
+        url:`${base}/recipes/`, 
+        form: {
+          title:'Spinach casserole',
+          servingSize: "4",
+          prepareTime: "90",
+      }}, 
+      function(err, httpResponse, body){ 
+        expect(httpResponse.statusCode).to.equal(200);
+
+        request.get(`${base}/recipes/list`, (err, res, body) => {
+          const data = JSON.parse(res.body);
+  
+          res.statusCode.should.eql(200);
+          expect(body["title"]).to.equal("Spinach casserole");
+          expect(data.length).to.equal(11);
+          done();
+        });
+        
+      })
+    });
+  });
+
+  describe('POST /recipes/edit', () => {
+    it("should update a recipe with id = 1", () => {
+      request.post({
+        url:`${base}/recipes/edit`, 
+        form: {
+          id: 1,
+          title:'Chilli',
+      }}, 
+      function(err, httpResponse, body){
+        expect(httpResponse.statusCode).to.equal(200);
+        
+        request.get(`${base}/recipes/list`, (err, res, body) => {
+          const data = JSON.parse(res.body);
+  
+          res.statusCode.should.eql(200);
+          expect(data[1]["title"]).to.equal("Chilli");
+          expect(data.length).to.equal(11);
+          expect(data[1]["prepareTime"]).to.equal("40");
+          done();
+        });
+      })
     });
   });
 });

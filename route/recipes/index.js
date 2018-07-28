@@ -85,6 +85,7 @@ module.exports = (knex) => {
   });
 
   app.post('/', (req, res) => {
+    console.log(req.body);
     knex("recipes")
     .insert({
       title: req.body.title,
