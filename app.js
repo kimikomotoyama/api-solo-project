@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+const knex = require("./config.js")();
 
 //declare require files
-const index = require("./route/index")
-const recipes = require("./route/recipes/index");
+const index = require("./route/index")(knex);
+const recipes = require("./route/recipes/index")(knex);
 
 //declare app.use functions
 app.use('/', index);

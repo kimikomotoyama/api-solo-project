@@ -1,16 +1,14 @@
 const express = require("express");
 const app = express();
-// const app = express.app();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const upload = multer();
-const knex = require("../../config.js")();
-
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true }));
-
 const root = '.'
+
+module.exports = (knex) => {
+  app.use(bodyParser.json()); // for parsing application/json
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   app.get('/', function (req, res) {
     res.sendFile('/view/recipes/index.html', {root: root});
@@ -87,5 +85,5 @@ const root = '.'
       res.sendStatus(400);
     });
   });
-
-module.exports = app;
+  return app;
+}
