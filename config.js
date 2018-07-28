@@ -1,12 +1,13 @@
 const Knex = require("knex");
+const config = require("./knexfile");
 
 function returnKnex () {
   return require('knex')({
-    client: 'pg',
-    port: 5432,
+    client: config.client,
+    port: config.port,
     connection: {
-      host : '127.0.0.1',
-      database : 'cookpod'
+      host : config.connection.host,
+      database : config.connection.database
     }
   });
 }
