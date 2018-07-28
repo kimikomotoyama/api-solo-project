@@ -24,16 +24,16 @@ const root = '.'
     knex.select()
     .from("recipes")
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
-      res.send("error");
+      res.send("err");
     });
   });
   
   router.post('/', (req, res) => {
-    res.send('post ok');
-  });
+    res.send("post ok");
+  })
   
   router.patch('/', (req, res) => {
     res.send('patch ok');

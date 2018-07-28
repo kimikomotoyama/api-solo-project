@@ -1,2 +1,20 @@
-Your recipes
+<h2>Post your recipe</h2>
+
+<form id="form" enctype="" action="http://127.0.0.1:3000/recipes" enctype="multipart/form-data" enctype="application/x-www-form-urlencoded" method="post">
+  <div>
+    <label for="title">Title</label>
+    <input type="text" name ="title" id="title" value="Test">
+  </div>
+  <div>
+    <label for="servingSize">Serving</label>
+    <input  type="text" name ="servingSize" id="servingSize" value="2">
+  </div>
+  <div>
+    <label for="prepareTime">Prepare time</label>
+    <input  type="text" name ="prepareTime" id="prepareTime" value="40">
+  </div>
+  <button type="submit" name="action" value="Post">Post</button>
+</form>
+
+
 
