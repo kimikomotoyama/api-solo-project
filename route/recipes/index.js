@@ -25,6 +25,10 @@ const root = '.'
   app.get('/', function (req, res) {
     res.sendFile('/view/recipes/index.html', {root: root});
   });
+
+  app.get('/edit', function (req, res) {
+    res.sendFile('/view/recipes/edit.html', {root: root});
+  });
   
   app.get('/list', (req, res) => {
     knex.select()
@@ -37,6 +41,26 @@ const root = '.'
     });
   });
   
+  app.post('/edit', (req, res) => {
+    if (!req.body.id) throw new Error("id required!");
+    console.log(req.body);
+    
+    knex("recipes")
+    .where('id', req.body.id)
+    .update({
+      title: req.body.title || data.title,
+      servingSize: req.body.servingSize || data.servingSize,
+      prepareTime: req.body.prepareTime || data.prepareTime
+    })
+    .then((data) => {
+      console.log(data);
+      res.send(req.body);
+    })
+    .catch((err) => {
+      res.sendStatus(400);
+    })
+  });
+
   app.post('/',  upload.array(), function (req, res, next) {
     knex("recipes")
     .insert({
@@ -54,11 +78,7 @@ const root = '.'
   });
 
   
-  app.patch('/', (req, res) => {
-    res.send('patch ok');
-  });
-  
-  app.delete('/', (req, res) => {
+  app.delete('/:id', (req, res) => {
     res.delete('delete ok');
   });
 
