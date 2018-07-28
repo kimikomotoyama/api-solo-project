@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
-const ejs = require("ejs");
 const bodyParser = require("body-parser");
-const multer = require("multer");
-const upload = multer();
 const root = '.'
 
 module.exports = (knex) => {
