@@ -5,20 +5,10 @@ const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const upload = multer();
-// const knex = require("../../config.js");
+const knex = require("../../config.js")();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
-
-//requiring knex doesn't work, so I have to hardcode this for now. 
-var knex = require('knex')({
-  client: 'pg',
-  port: 5432,
-  connection: {
-    host : '127.0.0.1',
-    database : 'cookpod'
-  }
-});
 
 const root = '.'
 
