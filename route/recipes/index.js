@@ -38,14 +38,21 @@ const root = '.'
   });
   
   app.post('/',  upload.array(), function (req, res, next) {
-    console.log(req.body);
-    res.json(req.body);
+    knex("recipes")
+    .insert({
+      title: req.body.title,
+      servingSize: req.body.servingSize,
+      prepareTime: req.body.prepareTime
+    })
+    .then(() => {
+      res.json(req.body);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
   });
 
-  // app.post('/', (req, res) => {
-  //   console.log(req.body);
-  //   res.send("post ok");
-  // })
   
   app.patch('/', (req, res) => {
     res.send('patch ok');
