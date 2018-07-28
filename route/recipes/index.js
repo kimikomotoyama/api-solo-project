@@ -14,11 +14,12 @@ module.exports = (knex) => {
     res.sendFile('/view/recipes/index.html', {root: root});
   });
   
-  app.get('/list', (req, res) => {
+  app.get('/list', (req, res, next) => {
     knex.select()
     .from("recipes")
     .then((data) => {
-      res.status(200).send(data);
+      res.send(data);
+      next();
     })
     .catch((err) => {
       console.log(err);
@@ -36,14 +37,22 @@ module.exports = (knex) => {
   
   app.post('/edit', (req, res) => {
     if (!req.body.id) throw new Error("id required!");
-    console.log(req.body);
     
     knex("recipes")
     .where('id', req.body.id)
-    .update({
-      title: req.body.title || data.title,
-      servingSize: req.body.servingSize || data.servingSize,
-      prepareTime: req.body.prepareTime || data.prepareTime
+    .then((data) => {
+      if (data.length === 0) {
+        throw new Error("can't edit. ID does not exist");
+      }
+    })
+    .then(() => {
+      return knex("recipes")
+      .where('id', req.body.id)
+      .update({
+        title: req.body.title || data.title,
+        servingSize: req.body.servingSize || data.servingSize,
+        prepareTime: req.body.prepareTime || data.prepareTime
+      })
     })
     .then((data) => {
       console.log(data);
@@ -60,7 +69,16 @@ module.exports = (knex) => {
 
     knex("recipes")
     .where('id', req.body.id)
-    .del()
+    .then((data) => {
+      if (data.length === 0) {
+        throw new Error("can't delete. ID does not exist");
+      }
+    })
+    .then(() => {
+      return knex("recipes")
+      .where('id', req.body.id)
+      .del()
+    })
     .then(() => {
       res.send("deleted");
     })
