@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+const root = '.'
 
-//declare require files
-const recipes = require("./recipes/index");
+router.get('/', function (req, res) {
+  res.sendFile('/view/index.html', {root: root});
+});
 
-//declare app.use functions
-app.use('/', recipes);
-
-module.exports = app;
+module.exports = router;
