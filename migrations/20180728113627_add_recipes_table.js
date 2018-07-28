@@ -5,7 +5,14 @@ exports.up = function(knex, Promise) {
     table.string('title');
     table.string('servingSize');
     table.string('prepareTime');
-    table.timestamps();
+    table
+      .timestamp("created_at")
+      .notNullable()
+      .defaultTo(knex.fn.now());
+    table
+      .timestamp("updated_at")
+      .notNullable()
+      .defaultTo(knex.fn.now());
   })
 };
 
