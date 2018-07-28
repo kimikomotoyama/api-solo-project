@@ -1,22 +1,32 @@
-<div class="put">
-    <h2>Edit your recipe</h2>
-    <form id="putform" action="http://127.0.0.1:3000/recipes/edit" method="post">
-      <div>
-        <label for="id">id</label>
-        <input type="text" name ="id" id="id" value="14">
-      </div>
-      <div>
-          <label for="title">Title</label>
-          <input type="text" name ="title" id="title" value="111">
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cookpod form</title>
+  </head>
+  <body>
+    <div class="put">
+      <h2>Edit your recipe</h2>
+      <form id="putform" action="http://127.0.0.1:3000/recipes/edit" method="post">
+        <div>
+          <label for="id">id</label>
+          <input type="text" name ="id" id="id" value="14">
         </div>
-      <div>
-        <label for="servingSize">Serving</label>
-        <input  type="text" name ="servingSize" id="servingSize" value="111">
-      </div>
-      <div>
-        <label for="prepareTime">Prepare time</label>
-        <input  type="text" name ="prepareTime" id="prepareTime" value="111">
-      </div>
-      <button type="submit" name="putform" value="Post">Edit</button>
-    </form>
-  </div>
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name ="title" id="title" value="111">
+          </div>
+        <div>
+          <label for="servingSize">Serving</label>
+          <input  type="text" name ="servingSize" id="servingSize" value="111">
+        </div>
+        <div>
+          <label for="prepareTime">Prepare time</label>
+          <input  type="text" name ="prepareTime" id="prepareTime" value="111">
+        </div>
+        <button type="submit" name="putform" value="Post">Edit</button>
+      </form>
+    </div>
+  </body>
+</html>
