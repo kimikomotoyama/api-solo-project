@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+const ejs = require("ejs");
+
+const root = '.'
 
 router.get('/', function (req, res) {
-  res.send('list all recipes');
+  res.sendFile('/view/recipes/index.html', {root: root});
 });
 
 router.post('/', (req, res) => {
