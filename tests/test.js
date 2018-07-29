@@ -64,6 +64,16 @@ describe('recipes', () => {
           title:'Spinach casserole',
           servingSize: "4",
           prepareTime: "90",
+          ingredients: {
+            "cottage cheese": "1 package",
+            "egg": "6",
+            "all-purpose-flour": "1/2 cup",
+            "sour cream": "1/4 cup",
+            "salt": "2 teaspoons",
+            "black pepper": "1/2 teaspoon",
+            "spinach": "10 ounces",
+            "shredded cheese": "4 cups"
+          }
       }}, 
       function(err, httpResponse, body){ 
         expect(httpResponse.statusCode).to.equal(200);

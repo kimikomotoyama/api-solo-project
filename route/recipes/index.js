@@ -47,7 +47,8 @@ module.exports = (knex) => {
       .update({
         title: req.body.title || data.title,
         servingSize: req.body.servingSize || data.servingSize,
-        prepareTime: req.body.prepareTime || data.prepareTime
+        prepareTime: req.body.prepareTime || data.prepareTime,
+        ingredients: JSON.parse(req.body.ingredients)
       })
     })
     .then((data) => {
@@ -89,7 +90,8 @@ module.exports = (knex) => {
     .insert({
       title: req.body.title,
       servingSize: req.body.servingSize,
-      prepareTime: req.body.prepareTime
+      prepareTime: req.body.prepareTime,
+      ingredients: JSON.parse(req.body.ingredients)
     })
     .then(() => {
       res.json(req.body);

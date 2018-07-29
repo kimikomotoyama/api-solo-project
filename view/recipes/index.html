@@ -11,15 +11,19 @@
       <form id="form" action="http://127.0.0.1:3000/recipes" method="post">
         <div>
           <label for="title">Title</label>
-          <input type="text" name ="title" id="title" value="Test">
+          <input type="text" name ="title" id="title" value="Egg rice">
         </div>
         <div>
           <label for="servingSize">Serving</label>
-          <input  type="text" name ="servingSize" id="servingSize" value="2">
+          <input  type="text" name ="servingSize" id="servingSize" value="1">
         </div>
         <div>
           <label for="prepareTime">Prepare time</label>
-          <input  type="text" name ="prepareTime" id="prepareTime" value="40">
+          <input  type="text" name ="prepareTime" id="prepareTime" value="5">
+        </div>
+        <div>
+          <label for="ingredients">ingredients</label>
+          <input  type="text" name ="ingredients" id="ingredients" value="" placeholder="json object">
         </div>
         <button type="submit" name="action" value="Post">Post</button>
       </form>
