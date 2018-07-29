@@ -33,7 +33,7 @@ module.exports = (knex) => {
   
   app.post('/edit', (req, res) => {
     if (!req.body.id) throw new Error("id required!");
-    
+    console.log("edit called");
     knex("recipes")
     .where('id', req.body.id)
     .then((data) => {
@@ -85,7 +85,6 @@ module.exports = (knex) => {
   });
 
   app.post('/', (req, res) => {
-    console.log(req.body);
     knex("recipes")
     .insert({
       title: req.body.title,

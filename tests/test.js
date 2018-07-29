@@ -1,5 +1,7 @@
 const sinon = require('sinon');
+const assert = require('assert');
 const request = require('request');
+const describe = require("mocha").describe;
 const chai = require('chai');
 const expect = require('chai').expect;
 const should = chai.should();
@@ -13,7 +15,7 @@ describe('recipes', () => {
   //each time you run npm test
   before = () => {
     return knex('recipes').del()
-    .then(function () {
+    .then(function (result) {
       // Inserts seed entries
       return knex('recipes').insert([
         {id: 1, title: 'Egg benedict', servingSize: '10', prepareTime: '40'},
@@ -27,6 +29,9 @@ describe('recipes', () => {
         {id: 9, title: 'California roll', servingSize: '10', prepareTime: '40'},
         {id: 10, title: 'Avocado breakfast bowl', servingSize: '10', prepareTime: '35'},
       ]);
+    })
+    .then((result) => {
+      console.log(result);
     });
   }
 
@@ -91,12 +96,35 @@ describe('recipes', () => {
           const data = JSON.parse(res.body);
   
           res.statusCode.should.eql(200);
-          expect(data[1]["title"]).to.equal("Chilli");
+          expect(data[0]["title"]).to.equal("Chilli");
           expect(data.length).to.equal(11);
-          expect(data[1]["prepareTime"]).to.equal("40");
+          expect(data[0]["prepareTime"]).to.equal("40");
           done();
         });
       })
     });
   });
+
+  describe('POST /recipes/delete', () => {
+    it("should delete the recipe with id = 2", () => {
+      request.post({
+        url:`${base}/recipes/delete`, 
+        form: {
+          id: 2,
+      }}, 
+      function(err, httpResponse, body){
+        expect(httpResponse.statusCode).to.equal(200);
+        
+        request.get(`${base}/recipes/list`, (err, res, body) => {
+          const data = JSON.parse(res.body);
+  
+          res.statusCode.should.eql(200);
+          expect(data.length).to.equal(10);
+          expect(data[1]["title"]).to.equal("Nabeyaki udon");
+          done();
+        });
+      })
+    });
+  });
+
 });
