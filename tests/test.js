@@ -12,16 +12,12 @@ const base = 'http://localhost:3000';
 
 co(function* () {
   describe('recipes', () => {
-  
     //currently, this before does not work and must manually do knex seed:run
     //each time you run npm test
     before((done) => {
-      Promise.resolve()
+      return knex('recipes').del()
       .then(() => {
-        return knex('recipes').del();
-      })
-      .then(() => {
-        knex('recipes').insert([
+        return knex('recipes').insert([
           {id: 1, title: 'Egg benedict', servingSize: '10', prepareTime: '40', ingredients: {
             "egg": "4", "bacon": "4 pieces", "vinegar": "2 teaspoons", "butter": "4 teaspoons"
           }},

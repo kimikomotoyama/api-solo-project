@@ -3,30 +3,112 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type ="text/css" href="index.css">
-    <title>Cookpod form</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type ="text/css" href="./layout/index.css">
+    <title>Cookpod</title>
   </head>
   <body>
-    <div class="github-repo">
-      <a href="https://github.com/kimikomotoyama/api-solo-project">Cookpod Github repository</a>
-    </div>
-
-    <div class="introduction">
-      Welcome to Cookpod!<br /><br />
-
-      This is an API where you can create, update, delete, and list all the recipes you want in your own database. 
-      Keeping your favorite recipe notebook can be annoying, so this is where you can log all of your favorite
-      recipes.
-    </div>
-
-    <div>API</div>
-    <p>You can get the following data:</p>
-    <div>Recipes</div>
-    <ul>
-      <li>title (string)</li>
-      <li>servingSize(string)</li>
-      <li>prepareTime(string)</li>
-      <li>ingredients(json)</li>
-    </ul>
+    <info>
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-usage-tab" data-toggle="pill" href="#pills-usage" role="tab" aria-controls="pills-usage" aria-selected="false">Usage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="github-repo">
+              <a href="https://github.com/kimikomotoyama/api-solo-project">Cookpod Github repository</a>
+            </div>
+          
+            <div class="intro card">
+              Welcome to Cookpod!<br />
+              <div class="card-body">
+                This is an API where you can create, update, delete, and list all the recipes you want in your own database. 
+                Keeping your favorite recipe notebook can be annoying, so this is where you can log all of your favorite
+                recipes.
+              </div>
+            </div>
+            <!-- <div class="image">
+              <img src="../resources/img/lemon.png">
+            </div> -->
+          </div>
+          <div class="tab-pane fade" id="pills-usage" role="tabpanel" aria-labelledby="pills-usage-tab">
+            <div class="apis">
+              <div class="api-container">
+                <div class="api-title">GET recipes/list</div>
+                <div class="explanation">
+                  GET request to list all the recipes in database. 
+                </div>
+                <a href="../recipes/list">Go to page</a>
+              </div>
+              <div class="api-container">
+                <div class="api-title">POST recipes/</div>
+                <div class="explanation">
+                  POST request to create a new recipe in database. 
+                </div>
+                <div class="attributes">
+                  <div>Recipes</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">title (string)</li>
+                    <li class="list-group-item">servingSize(string)</li>
+                    <li class="list-group-item">prepareTime(string)</li>
+                    <li class="list-group-item">ingredients(json)</li>
+                  </ul>
+                </div>
+                <a href="../recipes/">Go to page</a>
+              </div>
+              <div class="api-container">
+                <div class="api-title">POST recipes/edit</div>
+                <div class="explanation">
+                  POST request to edit a recipe in database. 
+                </div>
+                <div class="attributes">
+                  <div>Recipes</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">id</li>
+                    <li class="list-group-item">title (string)</li>
+                    <li class="list-group-item">servingSize(string)</li>
+                    <li class="list-group-item">prepareTime(string)</li>
+                    <li class="list-group-item">ingredients(json)</li>
+                  </ul>
+                </div>
+                <a href="../recipes/edit">Go to page</a>
+              </div>
+              <div class="api-container">
+                <div class="api-title">POST /delete</div>
+                <div class="explanation">
+                  POST request to delete a recipes in database. 
+                </div>
+                <div class="attributes">
+                  <div>Recipes</div>
+                  <ul class="list-group">
+                    <li class="list-group-item">id</li>
+                  </ul>
+                </div>
+                <a href="../recipes/delete">Go to page</a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <div class="SNS">
+              <a href="https://twitter.com/havasuphlox">Twitter</a>
+            </div>
+            <div class="SNS">
+              <a href="https://www.facebook.com/kmotoyama">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </info>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

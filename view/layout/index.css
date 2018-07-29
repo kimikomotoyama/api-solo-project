@@ -1,0 +1,47 @@
+body {
+  padding: 25px;
+  width: 1200px;
+}
+
+/* Home */
+info {
+  margin-bottom: 20px;
+}
+
+.github-repo {
+  margin-bottom: 20px;
+}
+
+.intro {
+  margin-bottom: 20px;
+}
+
+/* Usage */
+
+.apis {
+  margin-top: 50px;
+}
+
+.api-container {
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.api-title{
+  /* background-color: darkgrey; */
+  color: black;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  /* padding-left: 10px; */
+  font-weight: bold;
+}
+
+.attributes {
+
+}
+
+/* Contact */
+.SNS {
+  margin-bottom: 20px;
+  
+}
