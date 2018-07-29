@@ -23,7 +23,7 @@ info {
 }
 
 .api-container {
-  width: 500px;
+  /* width: 500px; */
   margin-bottom: 50px;
 }
 
@@ -37,7 +37,7 @@ info {
 }
 
 .attributes {
-
+  width: 500px;
 }
 
 /* Contact */
